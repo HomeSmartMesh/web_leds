@@ -1,0 +1,10 @@
+{
+    "mqtt":{
+        "client_id":"tile_sim",
+        "host":"10.0.0.42",
+        "port":1884,
+        "subscriptions":[
+            "lifx/sim_tiles"
+        ]
+    }
+}
