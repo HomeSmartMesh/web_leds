@@ -24,17 +24,23 @@ function svg_to_image(svg){
       
        let canvas = document.createElement('canvas');
        
-       canvas.widht = svg.width.baseVal.value;
-       
-       canvas.height = svg.height.baseVal.value;
+       let w = svg.width.baseVal.value
+       let h = svg.height.baseVal.value
+       console.log(`w=${w} ; h=${h}`)
+       canvas.width = w;
+       canvas.height = h;
+       //console.log(`canvas w=${canvas.width} ; h=${canvas.height}`)
+
        let context = canvas.getContext('2d');
        // draw image in canvas starting left-0 , top - 0  
-       context.drawImage(image, 0, 0, svg.width.baseVal.value, svg.height.baseVal.value );
+       context.drawImage(image, 0, 0, w, h );
       //  downloadImage(canvas); need to implement
-      let cls = context.getImageData(150,190,1,1).data
-      console.log(cls)
+      //console.log("301,190")
+      //cls = context.getImageData(299,100,3,1).data
+      //console.log(cls)
       //tile.update([`rgb(${cls[0]},${cls[1]},${cls[2]})`])
       tg.update_canvas(context)
+      //document.body.appendChild(image)
     };
     image.src = blobURL;
 }
@@ -43,7 +49,7 @@ async function main(){
     console.log("main() start")
 
     let parent = document.body
-    let [width,height] = [parent.offsetWidth,300]
+    let [width,height] = [parent.offsetWidth,260]
     let svg = html(parent,/*html*/`<svg id="main_svg" xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}"></svg>`);
     
     html(svg,/*html*/`<rect x="0" y="0" width="${width}" height="${height}" stroke="black" stroke-width="1" fill="green" fill-opacity="1" />`);
@@ -64,7 +70,7 @@ async function main(){
 
 
     tg = new TileGroup(sim_svg)
-    tg.init("host_1")
+    await tg.init("host_1")
     //tile = new Tile(sim_svg)
     //await tile.init(0,0)
     //tile.update(["blue","red","green"])

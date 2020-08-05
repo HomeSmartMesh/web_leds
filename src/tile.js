@@ -54,6 +54,7 @@ class Tile{
             for(let i=0;i<8;i++){
                 let x = this.x + (i+0.5)*this.led_w
                 let y = this.y + (j+0.5)*this.led_h
+                //console.log(`x=${x} ; y=${y}`)
                 let cls = context.getImageData(x,y,1,1).data
                 let css_color = `rgb(${cls[0]},${cls[1]},${cls[2]})`
                 //console.log(css_color)
